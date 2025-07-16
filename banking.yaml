@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: banking-finance-container
-          image: akhilsru3/banking-finance:3.0 
+          image: akhilsru3/banking:3.0 
           ports:
             - containerPort: 8081                        
           env:
@@ -35,4 +35,4 @@ spec:
     - protocol: TCP
       port: 8081            
       targetPort: 8081      
-      nodePort: 30081      
+      nodePort: 30087     
