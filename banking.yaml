@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: banking-finance-deployment
+  labels:
+    app: banking-finance
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: banking-finance
+  template:
+    metadata:
+      labels:
+        app: banking-finance
+    spec:
+      containers:
+        - name: banking-finance-container
+          image: akhilsru3/banking-finance:1.0 
+          ports:
+            - containerPort: 8081                        
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: dev
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: banking-finance-service
+spec:
+  type: NodePort
+  selector:
+    app: banking-finance
+  ports:
+    - protocol: TCP
+      port: 8081            
+      targetPort: 8081      
+      nodePort: 30081      
